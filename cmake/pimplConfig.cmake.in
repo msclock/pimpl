@@ -1,0 +1,17 @@
+# @PROJECT_NAME@Config.cmake
+# -------------------
+#
+# @PROJECT_NAME@ cmake module.
+# This module sets the following variables in your project:
+#
+# ::
+#
+#   @PROJECT_NAME@_FOUND - true if @PROJECT_NAME@ found on the system
+#   @PROJECT_NAME@_VERSION - @PROJECT_NAME@ version in format Major.Minor.Release
+
+@PACKAGE_INIT@
+
+include("${CMAKE_CURRENT_LIST_DIR}/@PROJECT_NAME@Targets.cmake")
+check_required_components(
+  @PROJECT_NAME@
+  )
