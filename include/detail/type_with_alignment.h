@@ -201,32 +201,32 @@ namespace std {
 	struct is_pod;
 
 	template <>
-	struct is_pod<::tt_align_ns::a2> : public true_type
+	struct is_pod<pimpl::tt_align_ns::a2> : public true_type
 	{
 	};
 
 	template <>
-	struct is_pod<::tt_align_ns::a4> : public true_type
+	struct is_pod<pimpl::tt_align_ns::a4> : public true_type
 	{
 	};
 	template <>
-	struct is_pod<::tt_align_ns::a8> : public true_type
+	struct is_pod<pimpl::tt_align_ns::a8> : public true_type
 	{
 	};
 	template <>
-	struct is_pod<::tt_align_ns::a16> : public true_type
+	struct is_pod<pimpl::tt_align_ns::a16> : public true_type
 	{
 	};
 	template <>
-	struct is_pod<::tt_align_ns::a32> : public true_type
+	struct is_pod<pimpl::tt_align_ns::a32> : public true_type
 	{
 	};
 	template <>
-	struct is_pod<::tt_align_ns::a64> : public true_type
+	struct is_pod<pimpl::tt_align_ns::a64> : public true_type
 	{
 	};
 	template <>
-	struct is_pod<::tt_align_ns::a128> : public true_type
+	struct is_pod<pimpl::tt_align_ns::a128> : public true_type
 	{
 	};
 } // namespace std
