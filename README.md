@@ -3,5 +3,5 @@ This repository is a modified distribution of [boost-pimpl](https://github.com/y
 * rename boost prefix as pimpl.
 * remove the dependency of boost compile enviornment.
 * replace boost-test with google-test.
-* support C++11.
+* support C++14.
 * add a template getter of pointer of impl to impl_ptr. 
