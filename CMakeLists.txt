@@ -69,7 +69,7 @@ add_definitions(-D_DISABLE_EXTENDED_ALIGNED_STORAGE
 
 add_subdirectory(include)
 
-if(FALSE)
+if(TRUE)
   # we will use the network to fetch Google Test sources make it possible to
   # disable unit tests when not on network
   option(ENABLE_UNIT_TESTS "Enable unit tests" ON)

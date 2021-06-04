@@ -89,9 +89,8 @@ string Base::call_virtual()
 	return (*this)->call_virtual();
 }
 
-
 template <>
-struct ::impl_ptr<Object>::implementation
+struct pimpl::impl_ptr<Object>::implementation
 {
 	implementation() { flags = 33; }
 
@@ -106,12 +105,10 @@ struct ::impl_ptr<Object>::implementation
 /**********Object class*************/
 Object::Object() : impl_ptr_type(in_place)
 {
-	
 }
 
-Object::~Object() 
+Object::~Object()
 {
-	
 }
 
 std::string Object::trace() const

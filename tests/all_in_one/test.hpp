@@ -5,7 +5,7 @@
 #include "gtest/gtest.h"
 
 using string = std::string;
-namespace policy = impl_ptr_policy;
+namespace policy = pimpl::impl_ptr_policy;
 
 //struct Book :pimpl::impl_ptr<Book>::shared
 struct Book : pimpl::impl_ptr<Book, policy::shared>

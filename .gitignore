@@ -6,3 +6,4 @@
 *.build
 *.vsbuild
 *out
+*build

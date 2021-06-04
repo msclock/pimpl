@@ -8,49 +8,53 @@
 #include <memory>
 #include "detail.h"
 
-namespace impl_ptr_policy
+namespace pimpl
 {
-	template <typename, typename = std::allocator<void>>
-	struct unique;
-}
-
-template <typename impl_type, typename allocator>
-struct impl_ptr_policy::unique
-{
-	using this_type = unique;
-	using traits_type = detail::traits::unique<impl_type, allocator>;
-	using ptr_type = typename traits_type::ptr_type;
-	using allocator_type = typename traits_type::alloc_type;
-
-	template <typename derived_type, typename alloc_arg, typename... arg_types>
-	void emplace(std::allocator_arg_t, alloc_arg&& a, arg_types&&... args)
+	namespace impl_ptr_policy
 	{
-		impl_ = traits_type::template make<derived_type>(std::allocator_arg, std::forward<alloc_arg>(a), std::forward<arg_types>(args)...);
+		template <typename, typename = std::allocator<void>>
+		struct unique;
 	}
 
-	template <typename alloc_arg, typename... arg_types>
-	unique(std::allocator_arg_t, alloc_arg&& a, arg_types&&... args)
-		: impl_(traits_type::template make<impl_type>(std::allocator_arg, std::forward<alloc_arg>(a), std::forward<arg_types>(args)...))
+	template <typename impl_type, typename allocator>
+	struct impl_ptr_policy::unique
 	{
-	}
+		using this_type = unique;
+		using traits_type = detail::traits::unique<impl_type, allocator>;
+		using ptr_type = typename traits_type::ptr_type;
+		using allocator_type = typename traits_type::alloc_type;
 
-	unique(std::nullptr_t, const allocator_type& a) : impl_(nullptr, a) {}
+		template <typename derived_type, typename alloc_arg, typename... arg_types>
+		void emplace(std::allocator_arg_t, alloc_arg&& a, arg_types&&... args)
+		{
+			impl_ = traits_type::template make<derived_type>(std::allocator_arg, std::forward<alloc_arg>(a), std::forward<arg_types>(args)...);
+		}
 
-	unique(this_type&& o) = default;
-	this_type& operator=(this_type&& o)
-	{
-		swap(o);
-		return *this;
-	}
+		template <typename alloc_arg, typename... arg_types>
+		unique(std::allocator_arg_t, alloc_arg&& a, arg_types&&... args)
+			: impl_(traits_type::template make<impl_type>(std::allocator_arg, std::forward<alloc_arg>(a), std::forward<arg_types>(args)...))
+		{
+		}
 
-	unique(this_type const&) = delete;
-	this_type& operator=(this_type const&) = delete;
+		unique(std::nullptr_t, const allocator_type& a) : impl_(nullptr, a) {}
 
-	bool operator<(this_type const& o) const { return impl_ < o.impl_; }
-	void swap(this_type& o) { std::swap(impl_, o.impl_); }
-	impl_type* get() const { return pimpl::to_address(impl_.get()); }
-	long use_count() const { return 1; }
+		unique(this_type&& o) = default;
+		this_type& operator=(this_type&& o)
+		{
+			swap(o);
+			return *this;
+		}
 
-private:
-	ptr_type impl_;
-};
+		unique(this_type const&) = delete;
+		this_type& operator=(this_type const&) = delete;
+
+		bool operator<(this_type const& o) const { return impl_ < o.impl_; }
+		void swap(this_type& o) { std::swap(impl_, o.impl_); }
+		impl_type* get() const { return pimpl::to_address(impl_.get()); }
+		long use_count() const { return 1; }
+
+	private:
+		ptr_type impl_;
+	};
+
+}; // namespace pimpl
