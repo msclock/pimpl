@@ -1,4 +1,4 @@
-This repository is a modified distribution of [boost-pimpl](https://github.com/yet-another-user/pimpl.git), and modified as follows:
+This repository is a modified distribution of [boost-pimpl](https://github.com/yet-another-user/pimpl.git), and modification as follows:
 
 * rename boost prefix as pimpl.
 * remove the dependency of boost compile enviornment.
